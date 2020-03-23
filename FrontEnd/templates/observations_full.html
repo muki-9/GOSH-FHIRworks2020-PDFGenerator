@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container">
+    {% for date, dict in data %}
+    <h2>Observations- {{date}}</h2>
+
+
+<form >
+        {% for key, value in dict.items() %}
+        <div id="key" class="row">
+            <div class="col-25">
+
+                <label for="{{key}}">{{key}}</label>
+            </div>
+            <div id="value"class="col-75">
+                <input type="text" id="{{key}}" name="{{key}}" disabled placeholder="{{value}}" >
+            </div>
+        </div>
+        {% endfor %}
+    {% endfor %}
+
+    <div id="submit" class="row">
+        <input type="button" class="btn btn-info" value="Download PDF" onclick="download_pdf()">
+    </div>
+</form>
+
+</div>
+<script>
+    function download_pdf()
+    {
+        var current_url = window.location.href;
+        location.href = current_url+"/pdf"
+
+    }
+</script>
+
+<!-- Bootstrap core JavaScript
+    ================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+{% endblock %}

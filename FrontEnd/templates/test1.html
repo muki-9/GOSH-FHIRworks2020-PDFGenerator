@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div id="exTab2" class="container">
+
+    <nav>
+        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+            <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Overview</a>
+            <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Observations</a>
+        </div>
+    </nav>
+    <div class="tab-content" id="nav-tabContent">
+        <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+            <form >
+                {% for key, value in name[0].items() %}
+                <div id="key" class="row">
+                    <div class="col-25">
+
+                        <label for="{{key}}">{{key}}</label>
+                    </div>
+                    <div id="value"class="col-75">
+                        <input type="text" id="{{key}}" name="{{key}}" disabled placeholder="{{value}}" >
+                    </div>
+                </div>
+                {% endfor %}
+
+            </form>
+        </div>
+        <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+
+            <br>
+
+            <div class='table-responsive' style="width:900px; height:550px; overflow:auto;">
+
+                <table id= "dynamicScroll" class='table table-bordered table-condensed table-striped table-hover'>
+                    <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Observation</th>
+                        <th>Value</th>
+                        <th> View all data </th>
+
+                    </tr>
+                    </thead>
+
+
+                    <tbody id="myTable">
+                    {% for date, component, value in name[1] %}
+                    <tr class="table-row">
+                        <td> {{date}} </td>
+                        <td> {{component}} </td>
+                        <td> {{value}} </td>
+                        <td> <a href="http://localhost:5003/patient/{{name[2]}}/{{date}}" class="btn btn-primary btn-sm active" role="button" aria-pressed="true">View all</a> </td>
+
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- Bootstrap core JavaScript
+    ================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+{% endblock %}

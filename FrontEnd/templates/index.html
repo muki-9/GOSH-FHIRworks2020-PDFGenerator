@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container">
+
+    <div class='table-responsive' style="width:900px; height:660px; overflow:auto;">
+
+        <table id= "dynamicScroll" class='table table-bordered table-condensed table-striped table-hover'>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Family name</th>
+                    <th>First name</th>
+                </tr>
+            </thead>
+
+
+            <tbody id="myTable">
+            {% for id, first, last in ids %}
+            <tr class="table-row">
+                <td> <a href="http://localhost:5003/patient/{{id}}"> {{id}} </a></td>
+                <td> <a href="http://localhost:5003/patient/{{id}}"> {{last}} </a></td>
+                <td> <a href="http://localhost:5003/patient/{{id}}"> {{first}} </a></td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+    </div>
+
+</div>
+
+
+
+{%endblock%}
+
+
